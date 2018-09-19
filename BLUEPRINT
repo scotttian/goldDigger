@@ -2,8 +2,9 @@ done -Scanning all the tickers
 done -Get all the current prices
 done -Get outstanding shares
 done -Calculate market cap
--Get all the revenue data
--Get all the earning per share data
--Calculate the market cap
--Calculate the market cap/revenue
+done -Get all the revenue data
+done -Get all the earning per share data
+done -Calculate the market cap
+done -Calculate the market cap/revenue
 -Get year over year growth data
+
