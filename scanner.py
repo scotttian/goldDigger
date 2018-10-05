@@ -27,6 +27,7 @@ def getAllTickers():
         sharesOutstanding = getOutStandingShare(ticker) if getOutStandingShare(ticker) else 0
         marketCap = float(sharesOutstanding)*float(currentPrice)
         financial_JSON = getFinancials(ticker,False)
+        annaul_financial_JSON = getFinancials(ticker,True)
         totalRevenue = 0
         netIncome = 0
         if "financials" in financial_JSON:
@@ -35,6 +36,22 @@ def getAllTickers():
                     totalRevenue = totalRevenue + float(month['totalRevenue'])
                 if month['netIncome']:
                     netIncome = netIncome + float(month['netIncome'])
+        if "financials" in annaul_financial_JSON:
+            if len(annaul_financial_JSON['financials'])>=2:
+                if "totalRevenue" in annaul_financial_JSON['financials'][0] and "totalRevenue" in annaul_financial_JSON['financials'][1] and annaul_financial_JSON['financials'][0]['totalRevenue'] and annaul_financial_JSON['financials'][1]['totalRevenue']:
+                    growth_revenue =  float(annaul_financial_JSON['financials'][0]["totalRevenue"]- annaul_financial_JSON['financials'][1]["totalRevenue"])/ abs(float(annaul_financial_JSON['financials'][1]["totalRevenue"]))
+                else:
+                    growth_revenue = 0;
+                if "netIncome" in annaul_financial_JSON['financials'][0] and "netIncome" in annaul_financial_JSON['financials'][1] and annaul_financial_JSON['financials'][0]['netIncome'] and annaul_financial_JSON['financials'][1]['netIncome']:
+                    growth_income =  float(annaul_financial_JSON['financials'][0]["netIncome"]- annaul_financial_JSON['financials'][1]["netIncome"])/ abs(float(annaul_financial_JSON['financials'][1]["netIncome"]))
+                else:
+                    growth_income = 0;
+            else:
+                growth_income = 0;
+                growth_revenue = 0;
+        else:
+            growth_income = 0;
+            growth_revenue = 0;
         sectorAndTags_json = getSectorAndTags(ticker)
         sector = sectorAndTags_json['sector']
         newObject['index']=count
@@ -67,7 +84,11 @@ def getAllTickers():
             newObject['netIncome_sharesOutstanding']=0
             newObject['marketCap_netIncome']=0
         print(sector)
+        print(growth_revenue)
+        print(growth_income)
         newObject['sector']=sector
+        newObject['growth_revenue']=growth_revenue
+        newObject['growth_income']=growth_income
         print("-----------")
         all.append(newObject)
     #print(all)
@@ -87,6 +108,14 @@ def getCurrentPrice(ticker):
     else:
         return "0"
 
+def getStats(ticker):
+    url = "https://api.iextrading.com/1.0/stock/"+ticker+"/stats"
+    r = requests.get(url)
+    if parseable(r.text):
+        stats = json.loads(r.text)
+        return stats
+    else:
+        return None
 
 def getOutStandingShare(ticker):
     url = "https://api.iextrading.com/1.0/stock/"+ticker+"/stats"

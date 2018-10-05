@@ -1,0 +1,22 @@
+Use machine learning to understand human behavior in the stock market
+Gathering market data to explain how money is moving
+ - Follow the money
+ - Combining it with world geo-political and economical enivorment to find value class that's in play
+Identifying over & under value assets and asset class
+Regionzie patterns to predict the market direction
+ - Macro level
+ - Individual stocks
+Identifying potential arbitrage opportunity
+Analysis option pay diagram
+Overlay graph to help trade options
+
+Infrastructure
+
+Host
+AWS
+
+Data foundation
+Stock market data: IEX(python script that pulls data from IEX daily) 
+
+
+
