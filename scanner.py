@@ -1,6 +1,7 @@
 import requests
 import json
 import csv
+from datetime import datetime
 
 def parseable(text):
     try:
@@ -91,9 +92,12 @@ def getAllTickers():
         newObject['growth_income']=growth_income
         print("-----------")
         all.append(newObject)
+        if count >2:
+            break
     #print(all)
     sorted_list = sorted(all,  key=lambda a : a['marketCap_totalRevenue'])
-    with open("/opt/suntorytime/goldDigger/output.csv", 'wb') as csv_file:
+    now = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    with open("/opt/suntorytime/goldDigger/out/output"+now+".csv", 'wb') as csv_file:
         wr = csv.writer(csv_file, delimiter=',')
         wr.writerow( [k for (k, v) in sorted_list[0].iteritems()])
         for cdr in sorted_list:

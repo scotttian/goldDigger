@@ -1,0 +1,4 @@
+sector,index,name,netIncome,totalRevenue,marketCap_netIncome,growth_revenue,currentPrice,growth_income,sharesOutstanding,marketCap,ticker,netIncome_sharesOutstanding,marketCap_totalRevenue
+,3,Perth Mint Physical Gold,0,0,0,0,11.88,0,100000,1188000.0,AAAU,0,0
+Basic Materials,2,Alcoa Corporation,142000000.0,12807000000.0,48.141560890140845,0.2504829362524147,36.66,1.5425,186473040,6836101646.4,AA,0.7615041831248099,0.5337785309908644
+Healthcare,1,Agilent Technologies Inc.,298000000.0,4809000000.0,72.79284454144295,0.06425511661113756,68.05,0.4805194805194805,318769547,21692267673.35,A,0.9348446324453948,4.5107647480453315
