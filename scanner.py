@@ -92,8 +92,6 @@ def getAllTickers():
         newObject['growth_income']=growth_income
         print("-----------")
         all.append(newObject)
-        if count >2:
-            break
     #print(all)
     sorted_list = sorted(all,  key=lambda a : a['marketCap_totalRevenue'])
     now = datetime.now().strftime("%Y-%m-%d_%H%M%S")
