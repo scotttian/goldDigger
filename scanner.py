@@ -93,7 +93,7 @@ def getAllTickers():
         all.append(newObject)
     #print(all)
     sorted_list = sorted(all,  key=lambda a : a['marketCap_totalRevenue'])
-    with open("output.csv", 'wb') as csv_file:
+    with open("/opt/suntorytime/goldDigger/output.csv", 'wb') as csv_file:
         wr = csv.writer(csv_file, delimiter=',')
         wr.writerow( [k for (k, v) in sorted_list[0].iteritems()])
         for cdr in sorted_list:
